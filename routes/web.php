@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PercentOffController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+// routes/web.php
+Route::get('/transform', [PercentOffController::class, 'showForm'])->name('transform.form');
+Route::post('/transform', [PercentOffController::class, 'submitForm'])->name('transform.submit');
