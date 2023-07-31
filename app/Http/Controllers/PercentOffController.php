@@ -10,7 +10,7 @@ class PercentOffController extends Controller
     {
         $selectedSettings = session('selected_settings', '95');
 
-        return view('home', compact('selectedSettings'));
+        return view('index', compact('selectedSettings'));
     }
 
     public function submitForm(Request $request)
@@ -34,7 +34,7 @@ class PercentOffController extends Controller
         session(['selected_settings' => $selectedSettings]);
 
 
-        return view('home', 
+        return view('index', 
             compact(
                 'input',
                 'result',
