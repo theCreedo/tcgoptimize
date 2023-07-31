@@ -17,17 +17,17 @@
                 <div class="mb-4">
                     <label for="settings" class="block mb-2 font-bold">TCG Low:</label>
                     <select name="settings" id="settings" class="w-full p-2 border border-gray-300 rounded-lg">
-                        <option value="95">95%</option>
-                        <option value="90">90%</option>
-                        <option value="85">85%</option>
-                        <option value="80">80%</option>
-                        <option value="75">75%</option>
-                        <option value="70">70%</option>
+                        <option value="95" @if(session('selected_settings') == '95') selected @endif>95%</option>
+                        <option value="90" @if(session('selected_settings') == '90') selected @endif>90%</option>
+                        <option value="85" @if(session('selected_settings') == '85') selected @endif>85%</option>
+                        <option value="80" @if(session('selected_settings') == '80') selected @endif>80%</option>
+                        <option value="75" @if(session('selected_settings') == '75') selected @endif>75%</option>
+                        <option value="70" @if(session('selected_settings') == '70') selected @endif>70%</option>
                     </select>
                 </div>
 
-                <button type="submit"
-                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Slash the Price</button>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Slash the
+                    Price</button>
             </form>
 
             <div>

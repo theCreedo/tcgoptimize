@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
 
 // routes/web.php
 Route::get('/transform', [PercentOffController::class, 'showForm'])->name('transform.form');
