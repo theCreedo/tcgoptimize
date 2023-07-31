@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 class DiscountController extends Controller
 {
-    public function showForm()
+    public function showDiscountForm()
     {
         $selectedSettings = session('selected_settings', '95');
 
-        return view('index', compact('selectedSettings'));
+        return view('discount', compact('selectedSettings'));
     }
 
     public function submitForm(Request $request)
@@ -33,7 +33,7 @@ class DiscountController extends Controller
         $selectedSettings = $request->input('settings');
         session(['selected_settings' => $selectedSettings]);
 
-        return view('index', 
+        return view('discount', 
             compact(
                 'input',
                 'result',

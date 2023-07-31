@@ -24,7 +24,7 @@
         
         <x-layouts.site.header />
 
-        <main>
+        <main class=" mx-auto py-8 px-4">
             {{ $slot }}
         </main>
 
