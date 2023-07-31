@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PercentOffController extends Controller
+class DiscountController extends Controller
 {
     public function showForm()
     {
@@ -33,12 +33,11 @@ class PercentOffController extends Controller
         $selectedSettings = $request->input('settings');
         session(['selected_settings' => $selectedSettings]);
 
-
         return view('index', 
             compact(
                 'input',
                 'result',
-                'selectedSettings'
+                'selectedSettings',
             )
         );
     }

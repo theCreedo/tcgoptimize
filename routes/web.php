@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PercentOffController;
+use App\Http\Controllers\DiscountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,5 +19,5 @@ Route::get('/', function () {
 })->name('home');
 
 // routes/web.php
-Route::get('/transform', [PercentOffController::class, 'showForm'])->name('transform.form');
-Route::post('/transform', [PercentOffController::class, 'submitForm'])->name('transform.submit');
+Route::get('/discount', [DiscountController::class, 'showForm'])->name('discount.form');
+Route::post('/discount', [DiscountController::class, 'submitForm'])->name('discount.submit');

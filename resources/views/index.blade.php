@@ -1,21 +1,28 @@
 <x-layouts.site.index>
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center py-4 sm:pt-0">
         <div class="container mx-auto p-4">
-            <h1 class="text-4xl font-bold mb-4">TCG Optimize</h1>
-            <p class="text-lg mb-6">Need to set a posting to a % of TCG Low? Don't want to calculate all the numbers manually?
-                Use our TCG Low Percentage Tool! Paste your post with the numbers, and we'll do the number crunching for you
-                :) (Rounded to the nearest 0.50)</p>
+            <h1 class="text-4xl font-bold mb-4">Discount Slasher</h1>
+            <p class="text-lg mb-6">Need to set a posting to a % of your prices? Don't want to calculate all the numbers manually?
+                
+            
+            Use our Discount Slasher! Paste your post with the numbers (make sure to add $ signs), and we'll do the number crunching for you
+                :)</p>
 
-            <form method="post" action="{{ route('transform.submit') }}" class="mb-6">
+            <form method="post" action="{{ route('discount.submit') }}" class="mb-6">
                 @csrf
                 <div class="mb-4">
                     <label for="input" class="block mb-2 font-bold">Input:</label>
                     <textarea id="input" name="input" rows="10" cols="50"
-                        class="w-full p-2 border border-gray-300 rounded-lg">{{ $input ?? '' }}</textarea>
+                        class="w-full p-2 border border-gray-300 rounded-lg"
+                        placeholder="WTS CONUS Only
+
+1x RF Fyendal's Spring Tunic $250
+1x CF Crown of Providence $300
+1x RF Eye of Ophidia $550">{{ $input ?? '' }}</textarea>
                 </div>
 
                 <div class="mb-4">
-                    <label for="settings" class="block mb-2 font-bold">TCG Low:</label>
+                    <label for="settings" class="block mb-2 font-bold">Discount to:</label>
                     <select name="settings" id="settings" class="w-full p-2 border border-gray-300 rounded-lg">
                         <option value="95" @if(session('selected_settings') == '95') selected @endif>95%</option>
                         <option value="90" @if(session('selected_settings') == '90') selected @endif>90%</option>
@@ -33,7 +40,8 @@
             <div>
                 <label for="result" class="block mb-2 font-bold">Result:</label>
                 <textarea id="result" name="result" rows="10" cols="50"
-                    class="w-full p-2 border border-gray-300 rounded-lg">{{ $result ?? '' }}</textarea>
+                    class="w-full p-2 border border-gray-300 rounded-lg"
+                    placeholder="">{{ $result ?? '' }}</textarea>
             </div>
         </div>
     </div>
