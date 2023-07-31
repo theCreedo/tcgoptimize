@@ -1,54 +1,40 @@
 <x-layouts.site.index>
-    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-        @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                @auth
-                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center py-4 sm:pt-0">
+        <div class="container mx-auto p-4">
+            <h1 class="text-4xl font-bold mb-4">TCG Optimize</h1>
+            <p class="text-lg mb-6">Need to set a posting to a % of TCG Low? Don't want to calculate all the numbers manually?
+                Use our TCG Low Percentage Tool! Paste your post with the numbers, and we'll do the number crunching for you
+                :) (Rounded to the nearest 0.50)</p>
 
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                    @endif
-                @endauth
-            </div>
-        @endif
-
-        <div>
-            <h1>TCG Optimize</h1>
-            <p>Need to set a posting to a % of TCG Low? Don't want to calculate all the numbers manually? Use our TCG Low Percentage Tool! Paste your post with the numbers, and we'll to the number crunching for you :) (Rounded to the nearest 0.50)</p>
-            <form method="post" action="{{ route('transform.submit') }}">
+            <form method="post" action="{{ route('transform.submit') }}" class="mb-6">
                 @csrf
-                <div>
-                    <label for="input">Input:</label>
-                    <textarea id="input" name="input" rows="10" cols="50">
-                        @isset($input)
-                            {{ $input }}
-                        @endisset
-                    </textarea>
+                <div class="mb-4">
+                    <label for="input" class="block mb-2 font-bold">Input:</label>
+                    <textarea id="input" name="input" rows="10" cols="50"
+                        class="w-full p-2 border border-gray-300 rounded-lg">{{ $input ?? '' }}</textarea>
                 </div>
 
-                <label for="settings">TCG Low:</label>
-                <select name="settings" id="settings">
-                    <option value="95">95%</option>
-                    <option value="90">90%</option>
-                    <option value="85">85%</option>
-                    <option value="80">80%</option>
-                    <option value="75">75%</option>
-                    <option value="70">70%</option>
-                </select>
-                <button type="submit">Slash the Price</button>
-
-
-                <div>
-                    <label for="result">Result:</label>
-                    <textarea id="result" name="result" rows="10" cols="50">
-                        @isset($result)
-                            {{ $result }}
-                        @endisset
-                    </textarea>
+                <div class="mb-4">
+                    <label for="settings" class="block mb-2 font-bold">TCG Low:</label>
+                    <select name="settings" id="settings" class="w-full p-2 border border-gray-300 rounded-lg">
+                        <option value="95">95%</option>
+                        <option value="90">90%</option>
+                        <option value="85">85%</option>
+                        <option value="80">80%</option>
+                        <option value="75">75%</option>
+                        <option value="70">70%</option>
+                    </select>
                 </div>
+
+                <button type="submit"
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Slash the Price</button>
             </form>
+
+            <div>
+                <label for="result" class="block mb-2 font-bold">Result:</label>
+                <textarea id="result" name="result" rows="10" cols="50"
+                    class="w-full p-2 border border-gray-300 rounded-lg">{{ $result ?? '' }}</textarea>
+            </div>
         </div>
     </div>
 </x-layouts.site.index>
