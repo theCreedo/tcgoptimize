@@ -46,8 +46,23 @@
             <div class="mt-4">
                 <button id="copyButton" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Copy</button>
             </div>
+
+            <div id="notification" class="hidden bg-green-500 text-white font-bold py-2 px-4 rounded mt-4">
+                Text copied to clipboard!
+            </div>
         </div>
     </div>
+
+    <style>
+        #notification {
+            @apply hidden bg-green-500 text-white font-bold py-2 px-4 rounded mt-4;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
 
     <script>
         document.getElementById('copyButton').addEventListener('click', function() {
