@@ -9,13 +9,13 @@
     </a>
 
     <!-- Mobile Hamburger Menu Icon -->
-    <button class="lg:hidden px-2 py-1 text-gray-800 focus:outline-none" id="menuBtn">
+    <button class="md:hidden px-2 py-1 text-gray-800 focus:outline-none" id="menuBtn">
         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
         </svg>
     </button>
 
-    <nav class="mr-4 hidden lg:block" id="desktopNav">
+    <nav class="mr-4 hidden md:block" id="desktopNav">
         <ul class="flex space-x-4">
             <li>
                 <a href="{{ route('home') }}" class="{{ $aboutActive ? 'active' : '' }} rounded-full py-2 px-4 text-black hover:text-blue-500 hover:bg-blue-100">Home</a>
@@ -28,7 +28,7 @@
 </header>
 
 <!-- Mobile Navigation Menu -->
-<div class="hidden lg:hidden" id="mobileNav">
+<div class="hidden md:hidden" id="mobileNav">
     <ul class="py-2 px-4 bg-gray-200">
         <li>
             <a href="{{ route('home') }}" class="{{ $aboutActive ? 'active' : '' }} block py-2 px-4 text-black hover:text-blue-500 hover:bg-blue-100">Home</a>
