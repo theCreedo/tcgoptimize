@@ -43,6 +43,18 @@
                     class="w-full p-2 border border-gray-300 rounded-lg"
                     placeholder="">{{ $result ?? '' }}</textarea>
             </div>
+            <div class="mt-4">
+                <button id="copyButton" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Copy</button>
+            </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('copyButton').addEventListener('click', function() {
+            var resultTextarea = document.getElementById('result');
+            resultTextarea.select();
+            resultTextarea.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand('copy');
+        });
+    </script>
 </x-layouts.site.index>
