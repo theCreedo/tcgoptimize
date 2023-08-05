@@ -15,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('discount');
+    return view('about');
 })->name('home');
 
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
 // routes/web.php
-Route::get('/discount', [DiscountController::class, 'showDiscountForm'])->name('discount.index');
+Route::get('/discount', [DiscountController::class, 'showDiscountForm'])->name('discount');
 Route::post('/discount', [DiscountController::class, 'submitForm'])->name('discount.submit');

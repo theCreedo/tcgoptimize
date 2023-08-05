@@ -20,11 +20,11 @@
 
         <title>TCG Optimize</title>
     </head>   
-    <body class="min-h-screen font-sans">
+    <body class="flex flex-col min-h-screen font-sans">
         
         <x-layouts.site.header />
 
-        <main class=" mx-auto py-8 px-4">
+        <main class="flex-grow">
             {{ $slot }}
         </main>
 
