@@ -18,6 +18,16 @@
         <meta name="twitter:image" content="https://tcgoptimize.com/images/logo-white-background.png">
         <meta name="twitter:url" content="https://tcgoptimize.com">
 
+        @if(config('analytics.view_id'))
+            <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('analytics.view_id') }}"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '{{ config('analytics.view_id') }}');
+            </script>
+        @endif
+        
         <title>TCG Optimize</title>
     </head>   
     <body class="flex flex-col min-h-screen font-sans">
