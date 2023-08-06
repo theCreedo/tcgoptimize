@@ -27,6 +27,9 @@
                 gtag('config', '{{ config('analytics.view_id') }}');
             </script>
         @endif
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8314357925637916"
+     crossorigin="anonymous"></script>
         
         <title>TCG Optimize</title>
     </head>   
