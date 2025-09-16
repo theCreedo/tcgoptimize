@@ -31,17 +31,17 @@
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8314357925637916"
      crossorigin="anonymous"></script>
         
-        <title>TCG Optimize</title>
+        <title>TCG Optimize - @yield('title')</title>
     </head>   
     <body class="flex flex-col min-h-screen font-sans">
-        
-        <x-layouts.site.header />
+
+        @include('layouts.header')
 
         <main class="flex-grow">
-            {{ $slot }}
+            @yield('content')
         </main>
 
-        <x-layouts.site.footer />
+        @include('layouts.footer')
 
     </body>
 

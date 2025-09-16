@@ -1,8 +1,8 @@
 @extends('layouts.index')
 
-@yield('title', 'Discount Slasher')
+@section('title', 'Discount Slasher')
 
-<x-layouts.index>
+@section('content')
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center py-4 sm:pt-0">
         <div class="container mx-auto p-4">
             <h1 class="text-4xl font-bold mb-4">Discount Slasher</h1>
@@ -102,4 +102,4 @@
             document.execCommand('copy');
         });
     </script>
-</x-layouts.index>
+@endsection
