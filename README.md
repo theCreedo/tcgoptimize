@@ -1,25 +1,186 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TCG Optimize
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive toolkit designed to equip and empower TCG (Trading Card Game) players in their marketplace endeavors. Built with Laravel 9 and modern web technologies.
 
-## About Laravel
+## 🎯 Project Vision
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+TCG Optimize aims to streamline the marketplace experience for TCG sellers and traders by providing essential tools for pricing, inventory management, market analysis, and automated workflows.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Current Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🔥 Discount Slasher (Enhanced)
+- **Secure Price Calculation**: Apply percentage discounts to TCG card listings with XSS protection
+- **Smart Input Validation**: Comprehensive server-side validation with user-friendly error messages
+- **Price Statistics**: Real-time calculation of total savings, price counts, and discount summaries
+- **Flexible Percentage Options**: Support for 50-100% pricing with precise 0.50 rounding
+- **Error Handling**: Robust error management with detailed logging and user feedback
+
+### 👤 User Management System
+- **Enhanced User Profiles**: Support for TCG-specific information
+  - TCGPlayer username integration
+  - Discord username for community connections
+  - Preferred currency settings (USD, CAD, EUR, GBP)
+  - Timezone management
+  - Email notification preferences
+  - Seller level classification (casual, semi-pro, professional)
+- **Business Profile Support**: Extended profiles for professional sellers
+  - Business information and tax details
+  - Multi-platform presence tracking
+  - Address and contact management
+
+### 🔒 Security Features
+- **Input Sanitization**: XSS protection with comprehensive input filtering
+- **Form Validation**: Server-side validation with custom rules and messages
+- **Error Logging**: Detailed error tracking for debugging and monitoring
+- **Data Integrity**: Proper database constraints and relationships
+
+### 🏗️ Technical Architecture
+- **Service-Oriented Design**: Business logic extracted to dedicated service classes
+- **Dependency Injection**: Modern Laravel patterns with constructor injection
+- **Type Safety**: Full type hints and return type declarations
+- **Database Migrations**: Version-controlled schema with proper relationships
+
+## 🚀 Getting Started
+
+### Prerequisites
+- PHP 8.0.2 or higher
+- Composer
+- Node.js & npm
+- SQLite (for development) or MySQL/PostgreSQL (for production)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd tcgoptimize
+   ```
+
+2. **Install dependencies**
+   ```bash
+   composer install
+   npm install
+   ```
+
+3. **Environment setup**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+4. **Database setup**
+   ```bash
+   touch database/database.sqlite  # For SQLite
+   php artisan migrate
+   ```
+
+5. **Start development servers**
+   ```bash
+   # Terminal 1: Laravel development server
+   php artisan serve
+
+   # Terminal 2: Vite development server (for assets)
+   npm run dev
+   ```
+
+6. **Access the application**
+   - Laravel App: http://127.0.0.1:8000
+   - Vite Dev Server: http://localhost:5173
+
+## 🛠️ Development
+
+### Project Structure
+```
+app/
+├── Http/
+│   ├── Controllers/
+│   │   └── DiscountController.php     # Enhanced discount calculator
+│   └── Requests/
+│       └── DiscountFormRequest.php    # Secure form validation
+├── Models/
+│   ├── User.php                       # Enhanced user model
+│   └── UserProfile.php                # Business profile management
+└── Services/
+    └── DiscountCalculatorService.php  # Business logic service
+
+database/
+├── migrations/
+│   ├── *_enhance_users_table_for_tcg_features.php
+│   └── *_create_user_profiles_table.php
+```
+
+### Testing
+```bash
+php artisan test                    # Run all tests
+php artisan test --coverage        # Run with coverage report
+```
+
+## 🗺️ Roadmap
+
+The complete development roadmap is available in `TCG_OPTIMIZE_IMPLEMENTATION_ROADMAP.md`. Key upcoming features include:
+
+### Phase 2: Core Market Intelligence (Weeks 5-8)
+- 📊 TCGPlayer API Integration
+- 📈 Real-time Price Tracking & Alerts
+- 📉 Market Analysis & Trend Visualization
+- 💼 Collection Management System
+
+### Phase 3: Inventory & Sales Tools (Weeks 9-12)
+- 📦 Multi-platform Inventory Management
+- 🤖 Automated Repricing & Listing Tools
+- 📊 Sales Analytics & Financial Reporting
+- 👥 Customer Relationship Management
+
+### Phase 4: Advanced Market Tools (Weeks 13-16)
+- 🔍 Cross-platform Arbitrage Detection
+- 🏆 Tournament Meta Analysis Integration
+- 🔮 Predictive Price Modeling
+- 🌐 Public API Development
+
+### Phase 5: Automation & Integration (Weeks 17-20)
+- ⚡ Bulk Operations & Workflow Automation
+- 🛒 eBay & Facebook Marketplace Integration
+- 🤖 AI-powered Recommendations
+- 📈 Advanced Reporting Dashboards
+
+## 📝 Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+### Development Workflow
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Commit Convention
+We follow conventional commits:
+- `feat:` New features
+- `fix:` Bug fixes
+- `docs:` Documentation updates
+- `style:` Code style changes
+- `refactor:` Code refactoring
+- `test:` Adding tests
+- `chore:` Maintenance tasks
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Acknowledgments
+
+- Built on the Laravel framework
+- Designed for the TCG community
+- Inspired by the need for better marketplace tools
+
+## 📞 Contact
+
+- **Developer**: Eric Lee
+- **Website**: [ericjmlee.com](https://www.ericjmlee.com)
+- **Discord**: [@theCreedo](https://discord.com/users/thecreedo)
+
+---
 
 ## Learning Laravel
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -21,6 +22,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'tcgplayer_username',
+        'discord_username',
+        'preferred_currency',
+        'timezone',
+        'email_notifications',
+        'seller_level',
     ];
 
     /**
@@ -40,5 +47,26 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'email_notifications' => 'boolean',
     ];
+
+    public function profile(): HasOne
+    {
+        return $this->hasOne(UserProfile::class);
+    }
+
+    public function getOrCreateProfile(): UserProfile
+    {
+        return $this->profile ?? $this->profile()->create();
+    }
+
+    public function isCasualSeller(): bool
+    {
+        return $this->seller_level === 'casual';
+    }
+
+    public function isProfessionalSeller(): bool
+    {
+        return $this->seller_level === 'professional';
+    }
 }

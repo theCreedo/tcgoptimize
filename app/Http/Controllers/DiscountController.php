@@ -2,43 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\DiscountFormRequest;
+use App\Services\DiscountCalculatorService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class DiscountController extends Controller
 {
-    public function showDiscountForm()
+    public function __construct(
+        private readonly DiscountCalculatorService $discountCalculatorService
+    ) {}
+
+    public function showDiscountForm(): View
     {
         $selectedSettings = session('selected_settings', '95');
 
         return view('discount', compact('selectedSettings'));
     }
 
-    public function submitForm(Request $request)
+    public function submitForm(DiscountFormRequest $request): View|RedirectResponse
     {
-        $input = $request->input('input');
-        $percentage = (float) $request->input('settings') / 100;
-        
-        // Regular expression to find numbers and replace them with "$" next to it
-        $pattern = '/(\$[0-9,]+(?:\.[0-9]+)?)/';
-        $replacementCallback = function ($matches) use ($percentage) {
-            $numericValue = (float)str_replace(',', '', substr($matches[0], 1));
-            $result = $numericValue * $percentage;
-            $roundedResult = round($result * 2) / 2; // Round to the nearest 0.50
-            return '$' . number_format($roundedResult, 2);
-        };
+        try {
+            $input = $request->validated()['input'];
+            $percentage = (float) $request->validated()['settings'] / 100;
 
-        $result = preg_replace_callback($pattern, $replacementCallback, $input);
+            $calculationResult = $this->discountCalculatorService->calculateDiscounts($input, $percentage);
+            $statistics = $this->discountCalculatorService->getStatistics(
+                $calculationResult['original_prices'],
+                $percentage
+            );
 
+            // Store settings in session
+            session(['selected_settings' => $request->validated()['settings']]);
 
-        $selectedSettings = $request->input('settings');
-        session(['selected_settings' => $selectedSettings]);
+            return view('discount', [
+                'input' => $calculationResult['original_text'],
+                'result' => $calculationResult['processed_text'],
+                'selectedSettings' => $request->validated()['settings'],
+                'statistics' => $statistics,
+                'success' => true,
+            ]);
 
-        return view('discount', 
-            compact(
-                'input',
-                'result',
-                'selectedSettings',
-            )
-        );
+        } catch (\InvalidArgumentException $e) {
+            return back()
+                ->withErrors(['calculation' => $e->getMessage()])
+                ->withInput();
+
+        } catch (\Exception $e) {
+            logger()->error('Discount calculation error', [
+                'error' => $e->getMessage(),
+                'input_length' => strlen($request->input('input', '')),
+                'settings' => $request->input('settings'),
+            ]);
+
+            return back()
+                ->withErrors(['calculation' => 'An error occurred while processing your request. Please try again.'])
+                ->withInput();
+        }
     }
 }
